@@ -39,7 +39,7 @@ namespace Util.Biz.Payments.Wechatpay.Parameters {
             param.Init();
             AppId( Config.AppId ).MerchantId( Config.MerchantId ).SignType( Config.SignType.Description() )
                 .Add( "nonce_str", Id.Guid() ).SpbillCreateIp( Web.Ip ).Body( param.Subject ).OutTradeNo( param.OrderId )
-                .TotalFee( param.Money ).NotifyUrl( param.NotifyUrl );
+                .TotalFee( param.Money ).NotifyUrl( param.NotifyUrl ).Attach( param.Attach ).OpenId( param.OpenId );
         }
 
         /// <summary>
@@ -175,6 +175,24 @@ namespace Util.Biz.Payments.Wechatpay.Parameters {
         /// <param name="package">包，默认值: "Sign=WXPay"</param>
         public WechatpayParameterBuilder Package( string package = "Sign=WXPay" ) {
             _builder.Add( WechatpayConst.Package, package );
+            return this;
+        }
+
+        /// <summary>
+        /// 设置附加数据
+        /// </summary>
+        /// <param name="attach">附加数据</param>
+        public WechatpayParameterBuilder Attach( string attach ) {
+            _builder.Add( WechatpayConst.Attach, attach );
+            return this;
+        }
+
+        /// <summary>
+        /// 设置用户标识
+        /// </summary>
+        /// <param name="openId">用户标识</param>
+        public WechatpayParameterBuilder OpenId( string openId ) {
+            _builder.Add( WechatpayConst.OpenId, openId );
             return this;
         }
 

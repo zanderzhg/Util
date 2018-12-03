@@ -52,7 +52,6 @@ export class ApplicationEditComponent extends EditComponentBase<ApplicationViewM
                 }, 100);
             }
         });
-        
     }
 
     /**

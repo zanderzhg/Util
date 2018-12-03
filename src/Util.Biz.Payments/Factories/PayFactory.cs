@@ -39,6 +39,8 @@ namespace Util.Biz.Payments.Factories {
             switch( way ) {
                 case PayWay.AlipayBarcodePay:
                     return new AlipayBarcodePayService( _alipayConfigProvider );
+                case PayWay.AlipayQrCodePay:
+                    return new AlipayQrCodePayService( _alipayConfigProvider );
                 case PayWay.AlipayPagePay:
                     return new AlipayPagePayService( _alipayConfigProvider );
                 case PayWay.AlipayWapPay:
@@ -47,6 +49,8 @@ namespace Util.Biz.Payments.Factories {
                     return new AlipayAppPayService( _alipayConfigProvider );
                 case PayWay.WechatpayAppPay:
                     return new WechatpayAppPayService( _wechatpayConfigProvider );
+                case PayWay.WechatpayMiniProgramPay:
+                    return new WechatpayMiniProgramPayService( _wechatpayConfigProvider );
             }
             throw new NotImplementedException( way.Description() );
         }
@@ -70,6 +74,13 @@ namespace Util.Biz.Payments.Factories {
         /// </summary>
         public IAlipayBarcodePayService CreateAlipayBarcodePayService() {
             return new AlipayBarcodePayService( _alipayConfigProvider );
+        }
+
+        /// <summary>
+        /// 创建支付宝二维码支付服务
+        /// </summary>
+        public IAlipayQrCodePayService CreateAlipayQrCodePayService() {
+            return new AlipayQrCodePayService( _alipayConfigProvider );
         }
 
         /// <summary>
@@ -105,6 +116,13 @@ namespace Util.Biz.Payments.Factories {
         /// </summary>
         public IWechatpayAppPayService CreateWechatpayAppPayService() {
             return new WechatpayAppPayService( _wechatpayConfigProvider );
+        }
+
+        /// <summary>
+        /// 创建微信小程序支付服务
+        /// </summary>
+        public IWechatpayMiniProgramPayService CreateWechatpayMiniProgramPayService() {
+            return new WechatpayMiniProgramPayService( _wechatpayConfigProvider );
         }
     }
 }

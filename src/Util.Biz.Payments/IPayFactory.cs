@@ -25,6 +25,10 @@ namespace Util.Biz.Payments {
         /// </summary>
         IAlipayBarcodePayService CreateAlipayBarcodePayService();
         /// <summary>
+        /// 创建支付宝二维码支付服务
+        /// </summary>
+        IAlipayQrCodePayService CreateAlipayQrCodePayService();
+        /// <summary>
         /// 创建支付宝电脑网站支付服务
         /// </summary>
         IAlipayPagePayService CreateAlipayPagePayService();
@@ -44,5 +48,9 @@ namespace Util.Biz.Payments {
         /// 创建微信App支付服务
         /// </summary>
         IWechatpayAppPayService CreateWechatpayAppPayService();
+        /// <summary>
+        /// 创建微信小程序支付服务
+        /// </summary>
+        IWechatpayMiniProgramPayService CreateWechatpayMiniProgramPayService();
     }
 }

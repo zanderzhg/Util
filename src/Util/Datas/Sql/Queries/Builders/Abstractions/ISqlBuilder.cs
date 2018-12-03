@@ -26,6 +26,10 @@ namespace Util.Datas.Sql.Queries.Builders.Abstractions {
         /// </summary>
         string ToSql();
         /// <summary>
+        /// 生成获取行数Sql
+        /// </summary>
+        string ToCountSql();
+        /// <summary>
         /// 获取参数列表
         /// </summary>
         IDictionary<string, object> GetParams();
@@ -73,7 +77,7 @@ namespace Util.Datas.Sql.Queries.Builders.Abstractions {
         /// <summary>
         /// 添加到Select子句
         /// </summary>
-        /// <param name="sql">Sql语句，说明：将会原样添加到Sql中，不会进行任何处理</param>
+        /// <param name="sql">Sql语句，说明：原样添加到Sql中，不会进行任何处理</param>
         ISqlBuilder AppendSelect( string sql );
         /// <summary>
         /// 设置表名
@@ -90,7 +94,7 @@ namespace Util.Datas.Sql.Queries.Builders.Abstractions {
         /// <summary>
         /// 添加到From子句
         /// </summary>
-        /// <param name="sql">Sql语句，说明：将会原样添加到Sql中，不会进行任何处理</param>
+        /// <param name="sql">Sql语句，说明：原样添加到Sql中，不会进行任何处理</param>
         ISqlBuilder AppendFrom( string sql );
         /// <summary>
         /// 内连接
@@ -107,7 +111,7 @@ namespace Util.Datas.Sql.Queries.Builders.Abstractions {
         /// <summary>
         /// 添加到内连接子句
         /// </summary>
-        /// <param name="sql">Sql语句，说明：将会原样添加到Sql中，不会进行任何处理</param>
+        /// <param name="sql">Sql语句，说明：原样添加到Sql中，不会进行任何处理</param>
         ISqlBuilder AppendJoin( string sql );
         /// <summary>
         /// 左外连接
@@ -124,7 +128,7 @@ namespace Util.Datas.Sql.Queries.Builders.Abstractions {
         /// <summary>
         /// 添加到左外连接子句
         /// </summary>
-        /// <param name="sql">Sql语句，说明：将会原样添加到Sql中，不会进行任何处理</param>
+        /// <param name="sql">Sql语句，说明：原样添加到Sql中，不会进行任何处理</param>
         ISqlBuilder AppendLeftJoin( string sql );
         /// <summary>
         /// 右外连接
@@ -141,7 +145,7 @@ namespace Util.Datas.Sql.Queries.Builders.Abstractions {
         /// <summary>
         /// 添加到右外连接子句
         /// </summary>
-        /// <param name="sql">Sql语句，说明：将会原样添加到Sql中，不会进行任何处理</param>
+        /// <param name="sql">Sql语句，说明：原样添加到Sql中，不会进行任何处理</param>
         ISqlBuilder AppendRightJoin( string sql );
         /// <summary>
         /// 设置连接条件
@@ -240,7 +244,7 @@ namespace Util.Datas.Sql.Queries.Builders.Abstractions {
         /// <summary>
         /// 添加到Where子句
         /// </summary>
-        /// <param name="sql">Sql语句，说明：将会原样添加到Sql中，不会进行任何处理</param>
+        /// <param name="sql">Sql语句，说明：原样添加到Sql中，不会进行任何处理</param>
         ISqlBuilder AppendWhere( string sql );
         /// <summary>
         /// 设置相等查询条件
@@ -403,6 +407,18 @@ namespace Util.Datas.Sql.Queries.Builders.Abstractions {
         /// <param name="values">值集合</param>
         ISqlBuilder In<TEntity>( Expression<Func<TEntity, object>> expression, IEnumerable<object> values ) where TEntity : class;
         /// <summary>
+        /// 设置Not In条件
+        /// </summary>
+        /// <param name="column">列名</param>
+        /// <param name="values">值集合</param>
+        ISqlBuilder NotIn( string column, IEnumerable<object> values );
+        /// <summary>
+        /// 设置Not In条件
+        /// </summary>
+        /// <param name="expression">列名表达式</param>
+        /// <param name="values">值集合</param>
+        ISqlBuilder NotIn<TEntity>( Expression<Func<TEntity, object>> expression, IEnumerable<object> values ) where TEntity : class;
+        /// <summary>
         /// 添加范围查询条件
         /// </summary>
         /// <param name="expression">列名表达式,范例：t => t.Name</param>
@@ -484,7 +500,7 @@ namespace Util.Datas.Sql.Queries.Builders.Abstractions {
         /// <summary>
         /// 添加到GroupBy子句
         /// </summary>
-        /// <param name="sql">Sql语句，说明：将会原样添加到Sql中，不会进行任何处理</param>
+        /// <param name="sql">Sql语句，说明：原样添加到Sql中，不会进行任何处理</param>
         ISqlBuilder AppendGroupBy( string sql );
         /// <summary>
         /// 排序
@@ -501,7 +517,7 @@ namespace Util.Datas.Sql.Queries.Builders.Abstractions {
         /// <summary>
         /// 排序
         /// </summary>
-        /// <param name="sql">Sql语句，说明：将会原样添加到Sql中，不会进行任何处理</param>
+        /// <param name="sql">Sql语句，说明：原样添加到Sql中，不会进行任何处理</param>
         ISqlBuilder AppendOrderBy( string sql );
         /// <summary>
         /// 设置分页

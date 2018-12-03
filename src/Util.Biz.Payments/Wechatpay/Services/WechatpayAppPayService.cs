@@ -47,12 +47,12 @@ namespace Util.Biz.Payments.Wechatpay.Services {
         /// </summary>
         /// <param name="config">支付配置</param>
         /// <param name="builder">参数生成器</param>
-        /// <param name="wechatpayResult">支付结果</param>
-        protected override string GetResult( WechatpayConfig config, WechatpayParameterBuilder builder, WechatpayResult wechatpayResult ) {
+        /// <param name="result">支付结果</param>
+        protected override string GetResult( WechatpayConfig config, WechatpayParameterBuilder builder, WechatpayResult result ) {
             return new WechatpayParameterBuilder( config )
                 .AppId( config.AppId )
                 .PartnerId( config.MerchantId )
-                .Add( "prepayid", wechatpayResult.GetPrepayId() )
+                .Add( "prepayid", result.GetPrepayId() )
                 .Add( "noncestr", Id.Guid() )
                 .Timestamp()
                 .Package()
